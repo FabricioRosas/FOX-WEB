@@ -1,0 +1,21 @@
+<html>
+    <body>
+        <p>Estás buscando: <strong>{{query}}</strong></p>
+
+        {% if perfiles %}
+            <p>Perfiles encontrados: {{perfiles|length}} perfiles</p>
+            <ul>
+                {% for consultaPerfil in perfiles %}
+                    <li>
+                        {{consultaPerfil.perfil}} &nbsp; {{consultaPerfil.pin}} &nbsp; {{consultaPerfil.plataforma}}
+                    </li>
+                {% endfor %}
+            </ul>
+
+        {% else %}
+            <p>No está el perfil buscado</p>
+
+        {% endif %}  
+
+    </body>
+</html>
