@@ -17,8 +17,8 @@ class AdministradorAdmin(admin.ModelAdmin):
     list_display=("pk","nombre","idVendedor")
 
 class PerfilAdmin(admin.ModelAdmin):
-    list_display=("nombrePerfil","pin","fechaInicio","fechaFin","modoPago","monto")
-    search_fields=("nombrePerfil","fechaInicio","fechaFin","modoPago","monto")
+    list_display=("nombrePerfil","pin","fechaInicio","fechaFin","modoPago","monto","idVendedor")
+    search_fields=("nombrePerfil","fechaInicio","fechaFin","modoPago","monto","idVendedor")
 
 class CuentaAdmin(admin.ModelAdmin):
     list_filter=("plataforma","correo","fechaAdquisicion","fechaCaducidad",)

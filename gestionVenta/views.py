@@ -16,7 +16,7 @@ def buscar(request):
         if len(varperfil)>15:
             mensaje="Texto demasiado largo"
         else:
-            varperfiles=Perfil.objects.filter(perfil__icontains=varperfil)
+            varperfiles=Perfil.objects.filter(nombrePerfil__icontains=varperfil)
             return render(request,"resultados_busqueda.html",{"perfiles":varperfiles,"query":varperfil})
     
     else:

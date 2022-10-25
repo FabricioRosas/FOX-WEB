@@ -16,14 +16,14 @@ class Vendedor(models.Model):
     contrasenia=models.CharField(max_length=10,verbose_name="Contraseña", unique=True)
     
     def __str__(self):
-        return '👤%s   📱%s id%s'%(self.nombre,self.telefono,self.pk)
+        return '👤%s   📱%s ID: %s'%(self.nombre,self.telefono,self.pk)
 
 class Administrador(models.Model):
     nombre=models.CharField(max_length=20,verbose_name="Nombre")
     idVendedor=models.ForeignKey(Vendedor,verbose_name="Id Vendedor", default=1,on_delete=models.SET_DEFAULT)
 
     def __str__(self):
-        return '👤%s   📱%s'%(self.nombre,self.idVendedor)
+        return '👤%s   📱%s ID: %s'%(self.nombre,self.idVendedor.telefono,self.pk)
 
 class Cuenta(models.Model):
     plataforma=models.CharField(max_length=10,verbose_name="Plataforma")
@@ -36,11 +36,11 @@ class Cuenta(models.Model):
     #idVendedor=models.IntegerField(verbose_name="Registrado por Admin",null=True)
 
     def __str__(self):
-        return 'Plataforma: %s, Correo: %s, Contraseña: %s'%(self.plataforma,self.correo,self.contrasenia)
+        return '📺%s - %s: %s'%(self.plataforma,self.correo,self.contrasenia)
 
 class Perfil(models.Model):
     #plataforma=models.CharField(max_length=10,null=True)
-    idCuenta=models.ForeignKey(Cuenta,verbose_name="Id de Cuenta",default=1,on_delete=models.CASCADE)#correo=models.CharField(max_length=30)
+    idCuenta=models.ForeignKey(Cuenta,verbose_name="Cuenta",default=1,on_delete=models.CASCADE)#correo=models.CharField(max_length=30)
     #contrasenia=models.CharField(max_length=10)
     nombrePerfil=models.CharField(blank=True,null=True,max_length=10,verbose_name="Nombre del Perfil")
     pin=models.IntegerField(blank=True,null=True)
@@ -52,7 +52,11 @@ class Perfil(models.Model):
     monto=models.FloatField(null=True,verbose_name="Monto [S/**.**]")
     idVendedor=models.ForeignKey(Vendedor,verbose_name="Vendedor",default=1,on_delete=models.CASCADE)
 
-    #def __str__(self):
-    #    return '%s🍿🍿🍿🍿🍿🍿🍿🍿Correo: Contraseña: Perfil: %sPin: %sSu servicio inicia: Su servicio vence:Nombre:Número: '''%(self.plataforma,self.perfil,self.pin)
+    def __str__(self):
+        cadena=''
+        if self.nombrePerfil is not None:
+            cadena=' - '+self.nombrePerfil
+        cad='📺'+self.idCuenta.plataforma+' - '+self.idCuenta.correo+cadena+' - RIP ['+str(self.fechaFin)+']'
+        return cad
 
         
