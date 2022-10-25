@@ -3,22 +3,22 @@ from gestionVenta.models import Perfil
 # Create your views here.
 
 def login(request):
-    return HttpResponse("Login")
+    return render(request, "login.html")
 
 def plataformas(request):
-    return HttpResponse("Plataformas")
+    return render(request, "plataformas.html")
     
 def nuevaVenta(request):
-    return HttpResponse("NuevaVenta")
+    return render(request, "nueva_venta.html")
 
 def pendientes(request):
-    return HttpResponse("Pendientes")
+    return render(request, "pendientes.html")
     
 def renovacion(request):
-    return HttpResponse("Renovacion")
+    return render(request, "renovacion.html")
 
 def ventas(request):
-    return HttpResponse("Ventas")
+    return render(request, "ventas.html")
 
 def actualizacion(request):
-    return HttpResponse("Actualizacion")
+    return render(request, "actualizacion.html")
